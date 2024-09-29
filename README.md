@@ -1,24 +1,43 @@
-# Image Restoration using Gradient Descent and Mean Field Annealing
+# Face Detection, Edge Detection, and MAP Estimation
 
-This repository contains Python implementations of image restoration techniques using gradient descent and mean field annealing (MFA). The methods aim to restore images degraded by noise, focusing on optimizing the image quality using Gaussian and Laplacian priors.
+This repository contains implementations for face detection, edge detection, and Maximum A Posteriori (MAP) estimation. The project aims to showcase various image processing techniques using OpenCV and other relevant libraries.
 
 ## Table of Contents
-
-- [Requirements](#requirements)
+- [Introduction](#introduction)
+- [Script Code](#script-code)
+  - [Face Detection](#face-detection)
+  - [Edge Detection](#edge-detection)
+  - [MAP Estimation](#map-estimation)
 - [Usage](#usage)
-- [Experiments](#experiments)
-- [Results](#results)
-- [License](#license)
 
-## Requirements
+## Introduction
+This project implements various image processing functionalities, including face detection using Haar cascades, edge detection with the Canny method, and MAP estimation for image analysis. It utilizes Python libraries such as OpenCV, NumPy, and Matplotlib to demonstrate these techniques.
 
-Make sure you have the following Python packages installed:
+## Script Code
 
-- numpy
-- matplotlib
-- Pillow
+### Face Detection
 
-You can install the required packages using pip:
+The script uses a pre-trained Haar cascade classifier to detect faces in images.
 
-```bash
-pip install numpy matplotlib Pillow
+#### Full Code:
+```python
+import cv2
+
+# Load the Haar cascade classifier
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+# Read the image
+image = cv2.imread('path/to/your/image.jpg')
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# Detect faces
+faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
+
+# Draw rectangles around detected faces
+for (x, y, w, h) in faces:
+    cv2.rectangle(image, (x, y), (x+w, y+h), (255, 0, 0), 2)
+
+# Display the result
+cv2.imshow('Detected Faces', image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
