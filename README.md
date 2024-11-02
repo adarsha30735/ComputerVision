@@ -21,6 +21,7 @@ The script uses a pre-trained Haar cascade classifier to detect faces in images.
 
 #### Full Code:
 ```python
+
 import cv2
 
 # Load the Haar cascade classifier
