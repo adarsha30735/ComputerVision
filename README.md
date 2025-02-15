@@ -14,10 +14,6 @@ This repository contains implementations for face detection, edge detection, and
 
 ## Example
 
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
 
 
 import numpy as np
